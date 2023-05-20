@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th=" http://www.thymleaf.org">
+<head>
+    Cart Items
+</head>
+<body>
+<table>
+    <thead>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Option</th>
+    </thead>
+    <tbody>
+    <tr th:if="${cartItems.empty}">
+        <td>No Items Added</td>
+    </tr>
+    <tr th:each="cartitems: ${cartItems}">
+        <td th:text="${cartitems.id}"></td>
+        <td th:text="${cartitems.name}"></td>
+        <td th:text="${cartitems.price}"></td>
+        <td th:text="${cartitems.quantity}"></td>
+        <td > <a th:href="@{/remove/{id}(id=${cartitems.id})}">Remove</a></td>
+
+    </tr>
+    <tr>
+        <td th:text="'Total price = ' + ${@itemService.totalPrice()}"></td>
+    </tr>
+
+    </tbody>
+
+
+</table>
+</body>
+
+</html>
